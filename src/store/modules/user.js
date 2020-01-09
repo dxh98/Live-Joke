@@ -13,7 +13,7 @@ const getDefaultState = () => {
 const state = getDefaultState()
 
 const mutations = {
-  RESET_STATE: (state) => {
+  RESET_STATE: state => {
     Object.assign(state, getDefaultState())
   },
   SET_TOKEN: (state, token) => {
@@ -32,49 +32,70 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
+      login({ userName: username.trim(), password: password })
+        .then(response => {
+          const { token } = response
+          commit('SET_TOKEN', token)
+          // 在vuex中存储当前的token值
+          setToken(token)
+          // 把服务器返回的token存储在服务器中
+          resolve()
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   },
+  // 用户登录成功后添加token并获取
+  // 当调用getInfo 时获取用户信息
 
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+      getInfo(state.token)
+        .then(response => {
+          // console.log(response)
+          // 打印出用户信息
+          const { userName, nickName } = response
+          if (!userName) {
+            reject('Verification failed, please Login again.')
+          }
 
-        if (!data) {
-          reject('Verification failed, please Login again.')
-        }
+          // const { name, avatar } = data
 
-        const { name, avatar } = data
-
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
+          commit('SET_NAME', userName) // 获取用户信息之后把用户信息写入vuex之后就登录成功了
+          commit(
+            'SET_AVATAR',
+            'http://img2.imgtn.bdimg.com/it/u=1280251724,2587127202&fm=26&gp=0.jpg'
+          )
+          resolve({})
+          // 如果走到了resolve说明getInfo成功了，成功之后需要有一个返回数据 获取服务器端数据的是 response
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   },
 
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        removeToken() // must remove  token  first
-        resetRouter()
-        commit('RESET_STATE')
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
+      // logout(state.token)
+      //   .then(() => {
+      //     removeToken() // must remove  token  first
+      //     resetRouter()
+      //     commit('RESET_STATE')
+      //     resolve()
+      //   })
+      //   .catch(error => {
+      //     reject(error)
+      //   })
+      // 退出登录放弃使用接口
+      removeToken() // must remove  token  first
+      resetRouter()
+      commit('RESET_STATE')
+      resolve()
+      // 退出登录时只删除本地token
     })
   },
 
@@ -94,4 +115,3 @@ export default {
   mutations,
   actions
 }
-

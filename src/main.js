@@ -1,11 +1,14 @@
 import Vue from 'vue'
 
+// 用来做浏览器标签初始化，在所有的浏览器中让基础标签样式一致
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
+// element-ui的语言包
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
+// @表示当前的src目录，相当于别名，在webpack中配置好的
 import '@/styles/index.scss' // global css
 
 import App from './App'
@@ -14,7 +17,7 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
-
+// 权限判断的文件
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -24,10 +27,10 @@ import '@/permission' // permission control
  * please remove it before going online! ! !
  */
 import { mockXHR } from '../mock'
-if (process.env.NODE_ENV === 'production') {
-  mockXHR()
-}
-
+// if (process.env.NODE_ENV === 'production') {
+//   mockXHR()
+// }
+mockXHR()
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明

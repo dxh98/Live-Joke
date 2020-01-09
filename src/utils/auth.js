@@ -5,6 +5,7 @@ const TokenKey = 'vue_admin_template_token'
 export function getToken() {
   return Cookies.get(TokenKey)
 }
+// 从cookie中取出token
 
 export function setToken(token) {
   return Cookies.set(TokenKey, token)
