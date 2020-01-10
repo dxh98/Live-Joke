@@ -22,10 +22,6 @@ const routes = [{
         redirect: '/homepage/funtext',
         component: homepage,
         children: [{
-                path: '/homepage',
-                redirect: '/homepage/funtext'
-            },
-            {
                 path: '/homepage/funtext',
                 name: 'funtext',
                 component: funtext
