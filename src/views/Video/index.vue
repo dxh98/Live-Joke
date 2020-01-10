@@ -1,8 +1,8 @@
 <template>
     <div id="header">
-        <van-sticky>
+        <van-sticky tag="div" id="v-header">
             热门推荐
-            <van-divider />
+            <van-divider/>
         </van-sticky>
             <ul>
                 <li v-for="item in list"  :key="item.sid">
