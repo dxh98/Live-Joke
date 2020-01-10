@@ -52,7 +52,7 @@ header {
   width: 100%;
   height: 257px;
   background: #ccc;
-  background: url(../../images/beijing.jpg) no-repeat;
+  background: url(../../../public/images/beijing.jpg) no-repeat;
   background-position: center;
   background-size: cover;
   margin: 0px;

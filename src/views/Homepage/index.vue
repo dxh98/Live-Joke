@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <van-tabs v-model="active" animated>
+    <van-tabs line-width="0">
       <van-tab title="爆笑段子" :to="{name:'funtext'}"></van-tab>
       <van-tab title="搞笑图片" :to="{name:'funpicture'}"></van-tab>
       <van-tab title="滑稽动图" :to="{name:'fungif'}"></van-tab>
@@ -16,7 +16,7 @@ export default {
   name: "Homepage",
   data() {
     return {
-      activeName: 'b'
+      
     };
   }
 };
