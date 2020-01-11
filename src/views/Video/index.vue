@@ -1,8 +1,8 @@
 <template>
-    <div id="header">
-        <van-sticky>
+    <div id="vedio">
+        <van-sticky tag="div" id="v-header">
             热门推荐
-            <van-divider />
+            <van-divider/>
         </van-sticky>
             <ul>
                 <li v-for="item in list"  :key="item.sid">
@@ -90,27 +90,29 @@ export default {
     .van-divider{
         margin-bottom: 0
     }
-    #header ul li {
-        position: relative
+    #vedio ul li {
+        position: relative;
+        padding-bottom: 10vw;
+        border-bottom: 10px solid rgba(180,180,180,0.6)
     }
-    #header ul li .van-image{
+    #vedio ul li .van-image{
         margin-top: 15px;
         margin-left: 15px
     }
-    #header ul li strong{
+    #vedio ul li strong{
         display:block;
         position: absolute;
         top: 20px;
         left: 60px
     }
-    #header ul li p{
+    #vedio ul li p{
         margin-left: 10vw;
         margin-right: 10vw
     }
     .video-box{
         position: relative
     }
-    #header ul li video{
+    #vedio ul li video{
         width: 70vw;
         height: auto;
         border-left: 15vw solid black;
