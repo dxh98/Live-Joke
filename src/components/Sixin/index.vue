@@ -2,7 +2,7 @@
   <div>
     <section>
       <article>
-        <img src="../../../public/images/src.jpeg" />
+        <img src="../../../public/img/src.jpeg" />
         <div>
           <h2>
             <span>孤儿——亚索</span>
@@ -12,7 +12,7 @@
         </div>
       </article>
       <article>
-        <img src="../../../public/images/src.jpeg" />
+        <img src="../../../public/img/src.jpeg" />
         <div>
           <h2>
             <span>盲僧</span>
@@ -22,7 +22,7 @@
         </div>
       </article>
       <article>
-        <img src="../../../public/images/src.jpeg" />
+        <img src="../../../public/img/src.jpeg" />
         <div>
           <h2>
             <span>武器大师</span>
@@ -32,7 +32,7 @@
         </div>
       </article>
       <article>
-        <img src="../../../public/images/src.jpeg" />
+        <img src="../../../public/img/src.jpeg" />
         <div>
           <h2>
             <span>赵信</span>
@@ -42,7 +42,7 @@
         </div>
       </article>
       <article>
-        <img src="../../../public/images/src.jpeg" />
+        <img src="../../../public/img/src.jpeg" />
         <div>
           <h2>
             <span>琦玉大魔王</span>

@@ -13,18 +13,25 @@
         </span>
         <span class="Add-right">选择合适的话题会有更多的赞哦~></span>
       </div>
-      <textarea cols="56" rows="26" autofocus placeholder="我的快乐源泉" id="ipt"></textarea>
+      <textarea cols="56" rows="20" autofocus placeholder="我的快乐源泉" id="ipt" v-model="content"></textarea>
+      <van-uploader v-model="fileList" multiple :max-count="9" />
     </section>
     <footer></footer>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import { post } from "../../utils/request";
+import { post } from "../../utils/ajax";
 export default {
   name: "AddContent",
   data() {
-    return {};
+    return {
+      content: "",
+      fileList: []
+    };
   },
   methods: {
     Close() {
@@ -34,7 +41,12 @@ export default {
     }
     // Release() {
     //   console.log(2);
-    //   post("http://106.14.70.106:3009/api/v1/products", {})
+    //   console.log(this.content);
+    //   console.log(this.fileList);
+    //   post("http://106.14.70.106:3009/api/v1/products", {
+    //     content: this.content,
+    //     coverImg: this.fileList
+    //   })
     //     .then(res => {
     //       console.log(res.data);
     //     })

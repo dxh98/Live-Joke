@@ -10,8 +10,8 @@ import funpicture from '../components/FunPicture'
 import fungif from '../components/FunGif'
 import remind from '../components/Remind'
 import sixin from '../components/Sixin'
-// import register from '../components/Register'
-// import login from '../components/Login'
+import register from '../components/Register'
+import login from '../components/Login'
 
 
 Vue.use(VueRouter)
@@ -74,7 +74,15 @@ const routes = [{
     path: '/mine',
     name: 'mine',
     component: mine
-},
+}, {
+    path: '/mine/login',
+    name: 'login',
+    component: login
+}, {
+    path: '/mine/register',
+    name: 'register',
+    component: register
+}
 ]
 
 const router = new VueRouter({
