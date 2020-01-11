@@ -1,6 +1,5 @@
 <template>
-    <div id="header">
-      
+    <div id="funText">
             <ul>
                 <li v-for="item in listText"  :key="item.sid">
                     <van-skeleton title avatar :row="3"  :loading="loading">
@@ -48,21 +47,22 @@ export default {
 </script>
 
 <style scoped>
-    #header ul li {
+    #funText ul li {
         position: relative;
-        border-bottom: 1px solid rgba(180,180,20,0.6)
+        padding-bottom: 10vw;
+        border-bottom: 10px solid rgba(180,180,180,0.6)
     }
-    #header ul li .van-image{
+    #funText ul li .van-image{
         margin-top: 15px;
         margin-left: 15px
     }
-    #header ul li strong{
+    #funText ul li strong{
         display:block;
         position: absolute;
         top: 20px;
         left: 60px
     }
-    #header ul li p{
+    #funText ul li p{
         margin-left: 10vw;
         margin-right: 10vw
     }
