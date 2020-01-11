@@ -1,11 +1,13 @@
 <template>
   <div class="about">
     <header>
+      <div class="Head-portrait">
+        <img :src="this.imgUrl" alt />
+      </div>
+      <span class="name">{{this.msg}}</span>
       <a href="javascript:void(0)" class="setting">
         <van-icon name="setting-o" />
       </a>
-      <p @click="Login()">登录</p>
-      <p @click="Register()">注册</p>
     </header>
     <div class="nav">
       <figure>
@@ -149,11 +151,6 @@
             <van-icon name="arrow" class="f6" />
           </a>
         </li>
-        <van-button
-          type="danger"
-          style="margin-top:10px;margin-left:36%;width:77px;height:44px"
-          @click="Logout()"
-        >退出</van-button>
         <li>
           <a href="javascript:void(0)"></a>
         </li>
@@ -163,33 +160,26 @@
 </template>
 
 <script>
+import { get } from "../../utils/ajax";
 export default {
   name: "Mine",
-  created() {
-    let token = localStorage.getItem("token");
-    console.log(token);
-    // console.log(this.$refs.login);
-
-    if (token) {
-      console.log(1);
-    }
+  data() {
+    return {
+      imgUrl: ""
+    };
   },
-  methods: {
-    Login() {
-      this.$router.push({
-        name: "login"
+  created() {
+    if (localStorage.getItem("token")) {
+      this.msg = localStorage.getItem("userName");
+      get("http://106.14.70.106:3009/api/v1/users/info", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token")
+        }
+      }).then(res => {
+        this.imgUrl = "http://106.14.70.106:3009" + res.data.avatar;
+        console.log(res);
       });
-    },
-    Register() {
-      this.$router.push({
-        name: "register"
-      });
-    },
-    Logout() {
-      localStorage.removeItem("token");
-      // this.$router.push({
-      //   name: "mine"
-      // });
+    } else {
     }
   }
 };
@@ -214,6 +204,26 @@ header {
   justify-content: space-between;
   align-items: flex-end;
 }
+.Head-portrait {
+  width: 70px;
+  height: 70px;
+  background: #f00;
+  border-radius: 50%;
+  position: relative;
+  bottom: 45%;
+  left: 5%;
+}
+.Head-portrait img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.name {
+  background: #f00;
+  position: relative;
+  bottom: 30%;
+  right: 75%;
+}
 .setting {
   width: 18px;
   height: 18px;
@@ -223,21 +233,7 @@ header {
   color: #fff;
   font-size: 18px;
 }
-header p {
-  position: relative;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  width: 120px;
-  height: 35px;
-  background: #fff;
-  color: #8acfff;
-  text-align: center;
-  line-height: 35px;
-  border-radius: 20px;
-}
+
 .nav {
   width: 100%;
   height: 70px;

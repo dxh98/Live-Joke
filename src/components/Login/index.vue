@@ -37,7 +37,7 @@ export default {
         console.log(res);
         if (res.data.code == "success") {
           localStorage.setItem("token", res.data.token);
-          // localStorage.setItem("userName", res.data.this.userName);
+          localStorage.setItem("userName", this.name);
           this.$router.push({
             name: "homepage"
           });

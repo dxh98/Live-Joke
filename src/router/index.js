@@ -12,6 +12,7 @@ import remind from '../components/Remind'
 import sixin from '../components/Sixin'
 import register from '../components/Register'
 import login from '../components/Login'
+import mines from '../components/Mines'
 
 
 Vue.use(VueRouter)
@@ -54,13 +55,19 @@ const routes = [{
 {
     path: '/addcontent',
     name: 'addcontent',
-    component: addcontent
+    component: addcontent,
+    meta: {
+        needLogin: true
+    }
 },
 {
     path: '/message',
     name: 'message',
     component: message,
     redirect: '/message/remind',
+    meta: {
+        needLogin: true
+    },
     children: [{
         path: '/message/sixin',
         name: 'sixin',
@@ -68,12 +75,18 @@ const routes = [{
     }, {
         path: '/message/remind',
         name: 'remind',
-        component: remind
+        component: remind,
+        meta: {
+            needLogin: true
+        }
     }]
 }, {
     path: '/mine',
     name: 'mine',
-    component: mine
+    component: mine,
+    meta: {
+        needLogin: true
+    }
 }, {
     path: '/mine/login',
     name: 'login',
@@ -82,11 +95,39 @@ const routes = [{
     path: '/mine/register',
     name: 'register',
     component: register
+}, {
+    path: '/mines',
+    name: 'mines',
+    component: mines
 }
 ]
 
 const router = new VueRouter({
     routes
 })
+
+router.beforeEach((to, from, next) => {
+    //当前跳转的页面是否需要登陆
+    if (to.meta.needLogin) {
+        //判断是否登陆
+        if (isLogined()) {
+            next()
+        } else {
+            next({
+                name: "mines"
+            })
+        }
+    } else {
+        next()
+    }
+})
+
+function isLogined() {
+    if (localStorage.getItem('token')) {
+        return true
+    } else {
+        return false
+    }
+}
 
 export default router
