@@ -12,6 +12,12 @@
                     <strong>{{item.name}}</strong>
                     <p>{{item.text}}</p>
                     <img :src="item.images" alt="图片被我吃掉啦，略略略~(｀・ω・´)">
+                    <div>
+                        <van-icon name="share" size="6vw" />{{item.forward}}
+                        <van-icon name="comment-o" size="6vw" />{{item.comment}}
+                        <van-icon name="good-job-o" size="6vw" />{{item.up}}
+                        <van-icon name="http://pic.51yuansu.com/pic2/cover/00/40/88/58133711f04c8_610.jpg" size="6vw" />{{item.down}}
+                    </div>
                 </van-skeleton>
             </li>
         </ul>
@@ -36,8 +42,8 @@ export default {
     },
     created(){//组件创建之后之行的内容，发get请求
         get("https://api.apiopen.top/getJoke?count=40&type=gif").then(res=>{
+            console.log("滑稽动图:");
             console.log(res.data.result);
-            
             this.listGif = res.data.result
         })
     },
@@ -45,14 +51,22 @@ export default {
 </script>
 
 <style scoped>
+    #funGif ul{ 
+        overflow: hidden;
+        background: rgba(180,180,180,0.6)
+    }
     #funGif ul li {
+        width: 96vw;
+        overflow: hidden;
+        background: white;
+        border-radius: 5vw;
         position: relative;
-        padding-bottom: 10vw;
-        border-bottom: 10px solid rgba(180,180,180,0.6)
+        padding-bottom: 2vw;
+        margin: 2vw 2vw 3vw;
     }
     #funGif ul li .van-image{
-        margin-top: 15px;
-        margin-left: 15px
+        margin-top: 4vw;
+        margin-left: 4vw
     }
     #funGif ul li strong{
         display:block;
@@ -61,13 +75,23 @@ export default {
         left: 60px
     }
     #funGif ul li p{
-        margin-left: 10vw;
-        margin-right: 10vw
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-bottom: 7vw
     } 
-    #funGif ul li img{
+    #funGif ul li>img{
         display: block;
         width: 100%;
-        height: auto
+        height: auto;
+        margin-bottom: 4vw
+    }
+    #funGif ul li>div{
+        display: flex;
+        justify-content: space-around;
+        width: 90vw;
+        height: 6vw;
+        margin-left: 5vw;
+        line-height: 6vw
     }
     .foot{
         width: 100vw;

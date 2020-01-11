@@ -29,6 +29,12 @@
                                 <img ref="player" src="../../../public/img/tmimg.png" alt="">
                             </div>
                         </div>
+                        <div>
+                            <van-icon name="share" size="6vw" />{{item.forward}}
+                            <van-icon name="comment-o" size="6vw" />{{item.comment}}
+                            <van-icon name="good-job-o" size="6vw" />{{item.up}}
+                            <van-icon name="http://pic.51yuansu.com/pic2/cover/00/40/88/58133711f04c8_610.jpg" size="6vw" />{{item.down}}
+                        </div>
                     </van-skeleton>
                 </li>
             </ul>
@@ -85,19 +91,34 @@ export default {
         z-index: 1000;
         text-align: center;
         padding-top: 3vw;
-        background:#F7F8FA
+        background:#F7F8FA;
+        border-bottom-left-radius: 3vw;
+        border-bottom-right-radius: 3vw
     }
     .van-divider{
         margin-bottom: 0
     }
+    #vedio ul{
+        overflow: hidden;
+        background: rgba(180,180,180,0.6)
+    }
+    /* 试图隐藏滚动条 但很显然没有成功 */
+    /* #vedio ul::-webkit-scrollbar{display: none}
+    #vedio ul{-ms-overflow-style: none}
+    #vedio ul{overflow: -moz-scrollbars-none; } */
+
     #vedio ul li {
+        width: 96vw;
+        overflow: hidden;
+        background: white;
+        border-radius: 5vw;
         position: relative;
-        padding-bottom: 10vw;
-        border-bottom: 10px solid rgba(180,180,180,0.6)
+        padding-bottom: 2vw;
+        margin: 2vw 2vw 3vw;
     }
     #vedio ul li .van-image{
-        margin-top: 15px;
-        margin-left: 15px
+        margin-top: 4vw;
+        margin-left: 4vw
     }
     #vedio ul li strong{
         display:block;
@@ -106,8 +127,9 @@ export default {
         left: 60px
     }
     #vedio ul li p{
-        margin-left: 10vw;
-        margin-right: 10vw
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-bottom: 7vw
     }
     .video-box{
         position: relative
@@ -118,7 +140,8 @@ export default {
         border-left: 15vw solid black;
         border-right: 15vw solid black;
         display: inline-block;
-        vertical-align: baseline
+        vertical-align: baseline;
+        margin-bottom: 4vw
     }
     .video-box .video-img{
         position: absolute;
@@ -138,7 +161,14 @@ export default {
         border-radius: 50%;
 
     }
-
+    #vedio ul li>div:nth-child(5){
+        display: flex;
+        justify-content: space-around;
+        width: 90vw;
+        height: 6vw;
+        margin-left: 3vw;
+        line-height: 6vw
+    }
     .foot{
         width: 100vw;
         height: 15vw
