@@ -41,9 +41,9 @@ export default {
         console.log(this.imgUrl);
         console.log(res);
         if (res.data.code == "success") {
-          // this.$router.push({
-          //   name: "login"
-          // });
+          this.$router.push({
+            name: "login"
+          });
         } else {
           alert("请注册正确的账号信息");
         }

@@ -111,5 +111,6 @@ section {
   resize: none;
   caret-color: #20b5ff;
   font-size: 16px;
+  width: 98%
 }
 </style>
