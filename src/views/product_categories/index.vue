@@ -8,22 +8,36 @@
       fit
       highlight-current-row
     >
-      <el-table-column align="center" label="序号" width="95" type="index"></el-table-column>
+      <el-table-column align="center" label="序号" width="95" type="index">
+      </el-table-column>
 
-      <el-table-column label="名字" prop="user.nickName" align="center"></el-table-column>
+      <el-table-column label="名字" prop="name"> </el-table-column>
 
       <el-table-column label="主图" width="180" align="center">
         <template slot-scope="scope">
-          <img style="width:120px; max-height:150px;" :src="scope.row.coverImg | filterImg" />
+          <img
+            style="width:120px; max-height:150px;"
+            :src="scope.row.coverImg | filterImg"
+          />
         </template>
       </el-table-column>
 
-      <el-table-column label="详情" prop="content" width="470" align="center"></el-table-column>
+      <el-table-column
+        label="描述"
+        prop="descriptions"
+        width="110"
+        align="center"
+      >
+      </el-table-column>
 
       <el-table-column align="center" label="操作" width="200">
         <template slot-scope="scope">
-          <el-button size="small" @click="editOne(scope.row)" type="primary">修改</el-button>
-          <el-button size="small" @click="delOne(scope.row)" type="denger">删除</el-button>
+          <el-button size="small" @click="editOne(scope.row)" type="primary"
+            >修改</el-button
+          >
+          <el-button size="small" @click="delOne(scope.row)" type="denger"
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -37,9 +51,9 @@
 </template>
 
 <script>
-import { getList, removeOne } from '@/api/products'
+import { getList, removeOne } from '@/api/product_categories'
 import { serverUrl, defaultImg } from '@/utils/config'
-// import { getList } from '@/api/user'
+
 export default {
   data() {
     return {
@@ -71,7 +85,8 @@ export default {
     fetchData(page = 1) {
       this.listLoading = true
       getList(page).then(response => {
-        this.list = response.products
+        this.list = response.categories
+        console.log(response)
         this.total = response.totalCount
         this.pages = response.pages
         this.listLoading = false
@@ -79,7 +94,7 @@ export default {
     },
     editOne(item) {
       this.$router.push({
-        name: 'ProductEdit',
+        name: 'ProductCategoryEdit',
         query: {
           id: item._id
         }

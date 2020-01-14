@@ -14,7 +14,7 @@
       <el-form-item label="主图">
         <!-- action 表示上传的地址
           on-success 表示成功的回调函数
-         -->
+        -->
         <el-upload
           class="avatar-uploader"
           :action="uploadUrl"
@@ -26,18 +26,12 @@
         </el-upload>
       </el-form-item>
 
-      <el-form-item label="商品价格">
-        <el-input v-model="ruleForm.price"></el-input>
-      </el-form-item>
-
-      <el-form-item label="商品库存">
-        <el-input v-model="ruleForm.quantity"></el-input>
+      <el-form-item label="详情">
+        <el-input type="textarea" v-model="ruleForm.content"></el-input>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')"
-          >立即创建</el-button
-        >
+        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
       <!-- 点击之后传入的ruleForm对应的是ref，根据 ruleForm取到的是表单项-->
@@ -53,8 +47,7 @@ export default {
     return {
       ruleForm: {
         name: '',
-        price: 0,
-        quantity: 0,
+        content: '',
         coverImg: ''
       },
       imageUrl: '',
@@ -81,7 +74,7 @@ export default {
             })
           })
         } else {
-          console.log('密码错误')
+          console.log('error')
           return false
         }
       })

@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-/* Layout */
 import Layout from '@/layout'
 
 /**
@@ -78,6 +77,53 @@ export const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: '/users',
+    component: Layout,
+    redirect: '/users/index',
+    name: 'Users',
+    meta: { title: '用户管理', icon: 'user' },
+    children: [
+      {
+        path: 'index',
+        name: 'UsersList',
+        component: () => import('@/views/users/index'),
+        meta: { title: '用户列表', icon: 'table' }
+      }
+      // meta标签将会控制路由最终的显示
+    ]
+  },
+
+  // {
+  //   path: '/product_categories',
+  //   component: Layout,
+  //   redirect: '/product_categories/index',
+  //   name: 'ProductCategories',
+  //   meta: { title: '商品分类管理', icon: 'example' },
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'ProductCategoriesList',
+  //       component: () => import('@/views/product_categories/index'),
+  //       meta: { title: '分类列表', icon: 'table' }
+  //     },
+  //     {
+  //       path: 'new',
+  // name: 'ProductCategoryNew',
+  // component: () => import('@/views/product_categories/new'),
+  // meta: { title: '分类新增', icon: 'tree' }
+  //     },
+  //     {
+  //       path: 'edit',
+  //       name: 'ProductCategoryEdit',
+  //       hidden: true,
+  //       // 不在侧边栏显示
+  //       component: () => import('@/views/product_categories/edit'),
+  //       meta: { title: '商品修改', icon: 'tree' }
+  //     }
+  //   ]
+  // },
 
   {
     path: '/products',

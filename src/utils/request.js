@@ -8,7 +8,7 @@ const service = axios.create({
   // 创建一个axios的实例
   // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url  这是网络请求的地址
   // withCredentials: true, // send cookies when cross-domain requests
-  baseURL: 'http://localhost:3009/',
+  baseURL: 'http://106.14.70.106:3009/',
   timeout: 5000 // request timeout
   // 请求时间
 })
@@ -93,6 +93,7 @@ service.interceptors.response.use(
   }
 )
 export function get(url, params) {
+  console.log(111)
   return service.get(url, { params })
 }
 // 发起一个get请求，接受一个url作为参数
