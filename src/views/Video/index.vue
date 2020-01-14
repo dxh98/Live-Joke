@@ -4,6 +4,7 @@
             热门推荐
             <van-divider/>
         </van-sticky>
+        <van-icon @click="replayHandle" name="replay" color="#046cd4" size="8vw" />
             <ul>
                 <li v-for="item in list"  :key="item.sid">
                     <van-skeleton title avatar :row="3"  :loading="loading">
@@ -80,6 +81,9 @@ export default {
             this.$refs.player[index].style.display='block';
             this.$refs.videoPlayer[index].pause();
         }
+    },
+    replayHandle(){
+      window.location.reload()
     }
 }
 }
@@ -97,6 +101,15 @@ export default {
     }
     .van-divider{
         margin-bottom: 0
+    }
+    #vedio>.van-icon{
+        background: rgba(240, 240, 240, 0.8);
+        box-shadow: 0px 0px 2.5vw #888888;
+        border-radius: 2vw;
+        position: fixed;
+        bottom: 20vw;
+        right: 8vw;
+        z-index: 1000;
     }
     #vedio ul{
         overflow: hidden;
