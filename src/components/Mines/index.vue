@@ -1,9 +1,9 @@
 <template>
   <div class="about">
     <header>
-      <a href="javascript:void(0)" class="setting">
+      <router-link class="setting" :to="{name:'settings'}">
         <van-icon name="setting-o" />
-      </a>
+      </router-link>
       <p @click="Login()">登录</p>
       <p @click="Register()">注册</p>
     </header>
@@ -149,16 +149,12 @@
             <van-icon name="arrow" class="f6" />
           </a>
         </li>
-        <van-button
-          type="danger"
-          style="margin-top:10px;margin-left:36%;width:77px;height:44px"
-          @click="Logout()"
-        >退出</van-button>
         <li>
           <a href="javascript:void(0)"></a>
         </li>
       </ul>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -167,11 +163,7 @@ export default {
   name: "Mine",
   created() {
     let token = localStorage.getItem("token");
-    console.log(token);
-    // console.log(this.$refs.login);
-
     if (token) {
-      console.log(1);
     }
   },
   methods: {
@@ -184,12 +176,6 @@ export default {
       this.$router.push({
         name: "register"
       });
-    },
-    Logout() {
-      localStorage.removeItem("token");
-      // this.$router.push({
-      //   name: "mine"
-      // });
     }
   }
 };
@@ -276,6 +262,7 @@ header p {
   height: 60px;
   align-items: center;
   border-bottom: 1px solid #ccc;
+  position: relative;
 }
 .list a span {
   margin-left: 2%;
@@ -289,9 +276,10 @@ header p {
   width: 100px;
 }
 .f6 {
-  margin-left: 60%;
   font-size: 20px;
   color: #ccc;
+  position: absolute;
+  right: 2%;
 }
 ul li:nth-child(10) {
   border-top: 8px solid #cccccc;

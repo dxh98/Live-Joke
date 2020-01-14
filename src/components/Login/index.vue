@@ -68,10 +68,12 @@ header {
   padding: 0px;
   justify-content: space-between;
   align-items: flex-end;
+  position: relative;
 }
 .Add-close {
-  margin-left: 4%;
-  margin-bottom: 54%;
+  position: absolute;
+  top: 5%;
+  left: 3%;
   color: #fff;
 }
 .btn {
