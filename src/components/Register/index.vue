@@ -41,9 +41,9 @@ export default {
         console.log(this.imgUrl);
         console.log(res);
         if (res.data.code == "success") {
-          // this.$router.push({
-          //   name: "login"
-          // });
+          this.$router.push({
+            name: "login"
+          });
         } else {
           alert("请注册正确的账号信息");
         }
@@ -57,7 +57,6 @@ export default {
     afterRead(file) {
       const formData = new FormData();
       formData.append("file", file.file);
-
       post("http://106.14.70.106:3009/api/v1/common/file_upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
@@ -84,11 +83,13 @@ header {
   padding: 0px;
   justify-content: space-between;
   align-items: flex-end;
+  position: relative;
 }
 .Add-close {
-  margin-left: 4%;
-  margin-bottom: 54%;
   color: #fff;
+  position: absolute;
+  top: 5%;
+  left: 3%;
 }
 .btn {
   margin-left: 15%;

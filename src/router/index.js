@@ -13,6 +13,8 @@ import sixin from '../components/Sixin'
 import register from '../components/Register'
 import login from '../components/Login'
 import mines from '../components/Mines'
+import setting from '../components/Setting'
+import settings from '../components/Settings'
 
 
 Vue.use(VueRouter)
@@ -86,7 +88,7 @@ const routes = [{
     component: mine,
     meta: {
         needLogin: true
-    }
+    },
 }, {
     path: '/mine/login',
     name: 'login',
@@ -99,13 +101,25 @@ const routes = [{
     path: '/mines',
     name: 'mines',
     component: mines
+}, {
+    path: '/mine/setting',
+    name: 'setting',
+    component: setting
+},
+{
+    path: '/mines/settings',
+    name: 'settings',
+    component: settings
 }
 ]
 
 const router = new VueRouter({
     routes
 })
-
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
 router.beforeEach((to, from, next) => {
     //当前跳转的页面是否需要登陆
     if (to.meta.needLogin) {

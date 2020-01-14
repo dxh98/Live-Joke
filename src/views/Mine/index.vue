@@ -5,9 +5,9 @@
         <img :src="this.imgUrl" alt />
       </div>
       <span class="name">{{this.msg}}</span>
-      <a href="javascript:void(0)" class="setting">
+      <router-link class="setting" :to="{name:'setting'}">
         <van-icon name="setting-o" />
-      </a>
+      </router-link>
     </header>
     <div class="nav">
       <figure>
@@ -151,11 +151,10 @@
             <van-icon name="arrow" class="f6" />
           </a>
         </li>
-        <li>
-          <a href="javascript:void(0)"></a>
-        </li>
       </ul>
     </div>
+    <div style="height:60px"></div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -165,23 +164,26 @@ export default {
   name: "Mine",
   data() {
     return {
-      imgUrl: ""
+      imgUrl: "",
+      msg: ""
     };
   },
   created() {
-    if (localStorage.getItem("token")) {
-      this.msg = localStorage.getItem("userName");
-      get("http://106.14.70.106:3009/api/v1/users/info", {
-        headers: {
-          authorization: "Bearer " + localStorage.getItem("token")
-        }
-      }).then(res => {
-        this.imgUrl = "http://106.14.70.106:3009" + res.data.avatar;
-        console.log(res);
-      });
-    } else {
-    }
-  }
+    setInterval(() => {
+      if (localStorage.getItem("token")) {
+        this.msg = localStorage.getItem("userName");
+        get("http://106.14.70.106:3009/api/v1/users/info", {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token")
+          }
+        }).then(res => {
+          this.imgUrl = "http://106.14.70.106:3009" + res.data.avatar;
+        });
+      } else {
+      }
+    }, 1000);
+  },
+  methods: {}
 };
 </script>
 
@@ -203,13 +205,13 @@ header {
   padding: 0px;
   justify-content: space-between;
   align-items: flex-end;
+  position: relative;
 }
 .Head-portrait {
   width: 70px;
   height: 70px;
-  background: #f00;
   border-radius: 50%;
-  position: relative;
+  position: absolute;
   bottom: 45%;
   left: 5%;
 }
@@ -219,17 +221,18 @@ header {
   border-radius: 50%;
 }
 .name {
-  background: #f00;
-  position: relative;
+  position: absolute;
+  left: 5%;
   bottom: 30%;
-  right: 75%;
+  color: #fff;
+  background: #ccc;
 }
 .setting {
   width: 18px;
   height: 18px;
-  position: fixed;
-  left: 90%;
-  top: 2%;
+  position: absolute;
+  right: 3%;
+  top: 6%;
   color: #fff;
   font-size: 18px;
 }
@@ -239,7 +242,7 @@ header {
   height: 70px;
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #f0eff4;
 }
 .nav figure {
   width: 20%;
@@ -272,6 +275,7 @@ header {
   height: 60px;
   align-items: center;
   border-bottom: 1px solid #ccc;
+  position: relative;
 }
 .list a span {
   margin-left: 2%;
@@ -285,9 +289,10 @@ header {
   width: 100px;
 }
 .f6 {
-  margin-left: 60%;
   font-size: 20px;
   color: #ccc;
+  position: absolute;
+  right: 3%;
 }
 ul li:nth-child(10) {
   border-top: 8px solid #cccccc;

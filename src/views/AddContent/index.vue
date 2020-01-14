@@ -14,9 +14,10 @@
         <span class="Add-right">选择合适的话题会有更多的赞哦~></span>
       </div>
       <textarea cols="56" rows="20" autofocus placeholder="我的快乐源泉" id="ipt" v-model="content"></textarea>
-      <van-uploader v-model="fileList" multiple :max-count="9" />
+      <van-uploader v-model="fileList" multiple :max-count="9" :after-read="afterRead" />
     </section>
     <footer></footer>
+    <div></div>
     <keep-alive>
       <router-view />
     </keep-alive>
@@ -30,7 +31,10 @@ export default {
   data() {
     return {
       content: "",
-      fileList: []
+      fileList: [],
+      coverImg: "",
+      userName: localStorage.getItem("userName"),
+      token: ""
     };
   },
   methods: {
@@ -38,22 +42,20 @@ export default {
       this.$router.push({
         name: "homepage"
       });
+    },
+    afterRead(file) {
+      const formData = new FormData();
+      formData.append("file", file.file);
+
+      post("http://106.14.70.106:3009/api/v1/common/file_upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(res => {
+        console.log(res);
+        this.imgUrl = res.data.info;
+      });
     }
-    // Release() {
-    //   console.log(2);
-    //   console.log(this.content);
-    //   console.log(this.fileList);
-    //   post("http://106.14.70.106:3009/api/v1/products", {
-    //     content: this.content,
-    //     coverImg: this.fileList
-    //   })
-    //     .then(res => {
-    //       console.log(res.data);
-    //     })
-    //     .catch(err => {
-    //       console.log(err);
-    //     });
-    // }
   }
 };
 </script>
@@ -111,5 +113,6 @@ section {
   resize: none;
   caret-color: #20b5ff;
   font-size: 16px;
+  width: 98%;
 }
 </style>
