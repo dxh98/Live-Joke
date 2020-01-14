@@ -79,7 +79,7 @@ header {
 .btn {
   margin-left: 35%;
   margin-top: 4%;
-  width: 150px;
+  width: 140px;
 }
 .Head-portrait {
   margin-left: 35%;
