@@ -7,50 +7,50 @@
     <div class="Section">
       <ul>
         <li>
-          <span>小右ID：{{this.msg}}</span>
+          <p>小右ID：{{this.msg}}</p>
         </li>
-        <li style="border-bottom:8px solid #f0eff4">
-          <span>账号与安全</span>
+        <li style="border-bottom:8px solid #f0eff4" @click="Security()">
+          <p>账号与安全</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
         <li style="border-bottom:8px solid #f0eff4">
-          <span>内容自动刷新</span>
+          <p>内容自动刷新</p>
           <van-switch v-model="checked" size="20px" class="Switch" />
         </li>
-        <li>
-          <span>推送设置</span>
+        <li @click="Pushs()">
+          <p>推送设置</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
         <li>
-          <span>检查更新</span>
+          <p>检查更新</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
         <li style="border-bottom:8px solid #f0eff4">
-          <span>内测版本优先体验</span>
+          <p>内测版本优先体验</p>
           <van-switch v-model="checked1" size="20px" class="Switch" />
         </li>
         <li>
-          <span>推荐中屏蔽的话题</span>
+          <p>推荐中屏蔽的话题</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
         <li style="border-bottom:8px solid #f0eff4">
-          <span>我屏蔽的用户</span>
+          <p>我屏蔽的用户</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
         <li>
-          <span>清除缓存</span>
+          <p>清除缓存</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
         <li>
-          <span>关于小右</span>
+          <p>关于小右</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
         <li style="border-bottom:8px solid #f0eff4">
-          <span>原创入驻</span>
+          <p>原创入驻</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
-        <li style="border-bottom:8px solid #f0eff4">
-          <span>我的订单</span>
+        <li style="border-bottom:8px solid #f0eff4" @click="Order()">
+          <p>我的订单</p>
           <van-icon name="arrow" class="Icon-right" />
         </li>
         <li class="Last-li">
@@ -59,6 +59,9 @@
       </ul>
       <div style="height:60px"></div>
     </div>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
@@ -86,6 +89,21 @@ export default {
       localStorage.removeItem("userName");
       this.$router.push({
         name: "mines"
+      });
+    },
+    Pushs() {
+      this.$router.push({
+        name: "pushs"
+      });
+    },
+    Order() {
+      this.$router.push({
+        name: "order"
+      });
+    },
+    Security() {
+      this.$router.push({
+        name: "security"
       });
     }
   }
@@ -128,7 +146,7 @@ export default {
   border-bottom: 1px solid #f0eff4;
   position: relative;
 }
-.Section span {
+.Section p {
   margin-left: 3%;
 }
 .Switch {
