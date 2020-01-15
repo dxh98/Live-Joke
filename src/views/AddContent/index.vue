@@ -31,10 +31,7 @@ export default {
   data() {
     return {
       content: "",
-      fileList: [],
-      coverImg: "",
-      userName: localStorage.getItem("userName"),
-      token: ""
+      fileList: []
     };
   },
   methods: {
@@ -52,7 +49,7 @@ export default {
           "Content-Type": "multipart/form-data"
         }
       }).then(res => {
-        console.log(res);
+        //console.log(res);
         this.imgUrl = res.data.info;
       });
     }

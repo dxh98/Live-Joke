@@ -15,6 +15,9 @@ import login from '../components/Login'
 import mines from '../components/Mines'
 import setting from '../components/Setting'
 import settings from '../components/Settings'
+import pushs from '../components/Push'
+import order from '../components/Order'
+import security from '../components/Security'
 
 
 Vue.use(VueRouter)
@@ -110,6 +113,18 @@ const routes = [{
     path: '/mines/settings',
     name: 'settings',
     component: settings
+}, {
+    path: '/mine/setting/pushs',
+    name: 'pushs',
+    component: pushs
+}, {
+    path: '/mine/setting/order',
+    name: 'order',
+    component: order
+}, {
+    path: '/mine/setting/security',
+    name: 'security',
+    component: security
 }
 ]
 
