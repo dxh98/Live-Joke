@@ -194,7 +194,7 @@ header {
   background: #ccc;
   background: url(../../../public/img/beijing.jpg) no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
   margin: 0px;
   padding: 0px;
   justify-content: space-between;

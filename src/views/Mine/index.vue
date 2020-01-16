@@ -34,7 +34,7 @@
     <div class="list">
       <ul>
         <li>
-          <a href="javascript:void(0)">
+          <a @click="Audit()">
             <span style="color:#ecbe5e">
               <van-icon name="search" />
             </span>
@@ -88,7 +88,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)">
+          <a>
             <span style="color: #758ef3">
               <van-icon name="down" />
             </span>
@@ -134,7 +134,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)">
+          <a @click="Help()">
             <span style="color: #f46591">
               <van-icon name="question-o" />
             </span>
@@ -183,7 +183,18 @@ export default {
       }
     }, 1000);
   },
-  methods: {}
+  methods: {
+    Audit() {
+      this.$router.push({
+        name: "audit"
+      });
+    },
+    Help() {
+      this.$router.push({
+        name: "help"
+      });
+    }
+  }
 };
 </script>
 
@@ -196,11 +207,11 @@ export default {
 header {
   display: flex;
   width: 100%;
-  height: 257px;
+  height: 200px;
   background: #ccc;
   background: url(../../../public/img/beijing.jpg) no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
   margin: 0px;
   padding: 0px;
   justify-content: space-between;

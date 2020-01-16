@@ -18,6 +18,9 @@ import settings from '../components/Settings'
 import pushs from '../components/Push'
 import order from '../components/Order'
 import security from '../components/Security'
+import audit from '../components/Audit'
+import help from '../components/Help'
+
 
 
 Vue.use(VueRouter)
@@ -125,6 +128,14 @@ const routes = [{
     path: '/mine/setting/security',
     name: 'security',
     component: security
+}, {
+    path: '/mine/setting/audit',
+    name: 'audit',
+    component: audit
+}, {
+    path: '/mine/setting/help',
+    name: 'help',
+    component: help
 }
 ]
 
