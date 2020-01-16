@@ -12,7 +12,7 @@
         </div>
       </article>
       <article>
-        <img src="../../../public/img/src.jpeg" />
+        <img src="../../../public/img/srcs.jpg" />
         <div>
           <h2>
             <span>盲僧</span>
@@ -32,7 +32,7 @@
         </div>
       </article>
       <article>
-        <img src="../../../public/img/src.jpeg" />
+        <img src="../../../public/img/srcs.jpg" />
         <div>
           <h2>
             <span>赵信</span>
